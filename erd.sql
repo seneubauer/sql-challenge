@@ -3,11 +3,10 @@
 
 
 CREATE TABLE "departments" (
-    "id" serial   NOT NULL,
     "dept_no" varchar(255)   NOT NULL,
     "dept_name" varchar(255)   NOT NULL,
     CONSTRAINT "pk_departments" PRIMARY KEY (
-        "id"
+        "dept_no"
      )
 );
 
@@ -21,10 +20,11 @@ CREATE TABLE "dept_emp" (
 );
 
 CREATE TABLE "dept_manager" (
+    "id" serial   NOT NULL,
     "dept_no" varchar(255)   NOT NULL,
     "emp_no" integer   NOT NULL,
     CONSTRAINT "pk_dept_manager" PRIMARY KEY (
-        "dept_no"
+        "id"
      )
 );
 
@@ -58,11 +58,11 @@ CREATE TABLE "titles" (
      )
 );
 
-ALTER TABLE "departments" ADD CONSTRAINT "fk_departments_dept_no" FOREIGN KEY("dept_no")
-REFERENCES "dept_manager" ("dept_no");
-
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
+
+ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_dept_no" FOREIGN KEY("dept_no")
+REFERENCES "departments" ("dept_no");
 
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
