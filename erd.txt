@@ -1,0 +1,37 @@
+departments
+-
+dept_no varchar(255) PK
+dept_name varchar(255)
+
+dept_emp
+-
+id serial PK
+dept_no varchar(255) FK >- departments.dept_no
+emp_no integer FK >- employees.emp_no
+
+dept_manager
+-
+id serial PK
+dept_no varchar(255) FK >- departments.dept_no
+emp_no integer FK - employees.emp_no
+
+employees
+-
+emp_no integer PK
+emp_title_id varchar(255) FK >- titles.title_id
+birth_date timestamp
+first_name varchar(255)
+last_name varchar(255)
+sex varchar(255)
+hire_date timestamp
+
+salaries
+-
+id serial PK
+emp_no integer FK - employees.emp_no
+salary integer
+
+titles
+-
+title_id varchar(255) PK
+title varchar(255)
