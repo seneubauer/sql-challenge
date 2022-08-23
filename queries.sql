@@ -52,3 +52,10 @@ select e.last_name, count(e.emp_no)
 from employees as e
 group by e.last_name
 order by count(e.last_name);
+
+-- BONUS. Testing queries
+select e.emp_no, s.salary, t.title
+from employees as e
+inner join salaries as s on e.emp_no = s.emp_no
+inner join titles as t on e.emp_title_id = t.title_id
+order by e.emp_no asc;
