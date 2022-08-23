@@ -12,8 +12,8 @@ CREATE TABLE "departments" (
 
 CREATE TABLE "dept_emp" (
     "id" serial   NOT NULL,
-    "emp_no" integer   NOT NULL,
     "dept_no" varchar(255)   NOT NULL,
+    "emp_no" integer   NOT NULL,
     CONSTRAINT "pk_dept_emp" PRIMARY KEY (
         "id"
      )
@@ -57,6 +57,9 @@ CREATE TABLE "titles" (
         "title_id"
      )
 );
+
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
+REFERENCES "departments" ("dept_no");
 
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
